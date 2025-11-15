@@ -2,6 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, ArrowRight, Sparkles } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "@/hooks/use-toast";
 
 type WorkoutCategory = "All" | "Strength" | "Cardio" | "Mobility" | "Mixed" | "Favorites";
@@ -75,6 +76,7 @@ const suggestions = [
 ];
 
 export default function WorkoutLibrary() {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState<WorkoutCategory>("All");
 
   const filteredRoutines = mockRoutines.filter((routine) => {
@@ -84,31 +86,19 @@ export default function WorkoutLibrary() {
   });
 
   const handleAIInsightClick = () => {
-    toast({
-      title: "🔮 AI Insight",
-      description: "Your strength workouts are your most consistent this month. Keep it up!",
-    });
+    navigate('/ai-insight');
   };
 
   const handleRoutineClick = (routine: Routine) => {
-    toast({
-      title: `Opening ${routine.title}`,
-      description: "Routine detail screen coming soon",
-    });
+    navigate('/routine/1');
   };
 
   const handleCreateRoutine = () => {
-    toast({
-      title: "✨ Create Routine",
-      description: "AI-powered routine builder coming soon",
-    });
+    navigate('/create-routine');
   };
 
   const handleSuggestionClick = (suggestion: typeof suggestions[0]) => {
-    toast({
-      title: `${suggestion.emoji} ${suggestion.title}`,
-      description: "Opening suggested routine",
-    });
+    navigate('/routine/1');
   };
 
   return (
