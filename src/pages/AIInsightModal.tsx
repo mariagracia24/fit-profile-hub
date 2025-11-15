@@ -1,11 +1,18 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Target, TrendingUp, Flame, Dumbbell, Plus } from "lucide-react";
+import { Target, TrendingUp, Flame, Dumbbell, Plus, Activity } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { mockHealthData } from "@/data/mockHealth";
 
 const AIInsightModal = () => {
   const navigate = useNavigate();
+  const [healthConnected, setHealthConnected] = useState(false);
+
+  useEffect(() => {
+    setHealthConnected(localStorage.getItem("healthConnected") === "true");
+  }, []);
 
   const handleAddExercise = (exerciseName: string) => {
     toast({ 
@@ -60,6 +67,36 @@ const AIInsightModal = () => {
         
         <div className="flex-1 overflow-y-auto px-6">
           <div className="flex flex-col gap-6 pb-6">
+          
+            {/* Apple Health Connection Status */}
+            {!healthConnected ? (
+              <div className="bg-[#111111] p-4 rounded-2xl border border-[#1E1E1E] space-y-3">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Activity className="text-[#A8A8A8]" size={20} />
+                    <p className="text-white text-sm">Apple Health not connected</p>
+                  </div>
+                </div>
+                <Button
+                  onClick={() => navigate('/health-connect')}
+                  className="w-full bg-[#5D5FEC]/20 hover:bg-[#5D5FEC]/30 text-[#5D5FEC] border border-[#5D5FEC]/30 rounded-full h-10 text-sm font-medium"
+                >
+                  Connect Now
+                </Button>
+              </div>
+            ) : (
+              <div className="bg-gradient-to-r from-[#10B981]/20 to-[#10B981]/10 p-4 rounded-2xl border border-[#10B981]/30">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Activity className="text-[#10B981]" size={20} />
+                    <div>
+                      <p className="text-white font-medium text-sm">Apple Health Connected ✓</p>
+                      <p className="text-[#10B981] text-xs">Last synced: {mockHealthData.lastSynced}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           
             {/* Section 1: Most Consistent Category */}
           <div className="bg-[#1A1A1A] p-4 rounded-2xl border border-[#5D5FEC]/20 shadow-[0_0_20px_rgba(93,95,236,0.2)]">

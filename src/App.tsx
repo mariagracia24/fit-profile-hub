@@ -17,6 +17,7 @@ import PhotoViewer from "./pages/PhotoViewer";
 import WeeklyWrapUp from "./pages/WeeklyWrapUp";
 import Settings from "./pages/Settings";
 import HealthSyncModal from "./pages/HealthSyncModal";
+import HealthConnect from "./pages/HealthConnect";
 import InviteFriends from "./pages/InviteFriends";
 import NotFound from "./pages/NotFound";
 
@@ -43,6 +44,7 @@ const App = () => (
           <Route path="/weekly-wrap-up" element={<WeeklyWrapUp />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/health-sync-modal" element={<HealthSyncModal />} />
+          <Route path="/health-connect" element={<HealthConnect />} />
           <Route path="/invite-friends" element={<InviteFriends />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
