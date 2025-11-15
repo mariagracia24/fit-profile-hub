@@ -7,6 +7,7 @@ import gallery5 from "@/assets/gallery-5.jpg";
 import gallery6 from "@/assets/gallery-6.jpg";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { toast } from "sonner";
 
 const mockData = {
   name: "Maria Gracia M",
@@ -23,6 +24,14 @@ const mockData = {
 };
 
 const Index = () => {
+  const handleWorkoutTagClick = (workout: string) => {
+    toast.info(`Filtering workouts by: ${workout}`);
+  };
+
+  const handleBadgeClick = () => {
+    toast.info("Badge Collection coming soon!");
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-2xl mx-auto px-5 py-7">
@@ -39,44 +48,47 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Single Badge */}
+        {/* Trophy Badge - Clickable */}
         <div className="flex justify-center mb-4">
-          <div
-            className="bg-dark-card rounded-[20px] px-4 py-1.5 border border-dark-border"
-            style={{ boxShadow: "var(--shadow-subtle)" }}
+          <button
+            onClick={handleBadgeClick}
+            className="text-3xl hover:scale-110 transition-transform cursor-pointer"
+            aria-label="View badge collection"
           >
-            <span className="text-sm font-medium text-text-primary">{mockData.badge}</span>
-          </div>
+            🏆
+          </button>
         </div>
 
         {/* Name */}
-        <h1 className="text-center text-[28px] font-bold text-text-primary mb-5">
+        <h1 className="text-center text-[28px] font-bold text-text-primary mb-6">
           {mockData.name}
         </h1>
 
-        {/* Streak + Goal Pills */}
-        <div className="flex justify-center gap-4 mb-5">
-          <div
-            className="bg-dark-card rounded-[26px] px-5 py-3 border border-dark-border flex items-center gap-2 animate-pulse-glow"
-            style={{ boxShadow: "var(--shadow-glow)" }}
+        {/* Streak + Goal Cards - Larger and Distinct */}
+        <div className="flex justify-center gap-3 mb-6 px-4">
+          <Card
+            className="flex-1 bg-gradient-to-br from-orange-500/20 to-red-500/20 border-orange-500/30 rounded-[24px] p-4 animate-pulse-glow"
+            style={{ boxShadow: "0 0 20px rgba(251, 146, 60, 0.3)" }}
           >
-            <span className="text-lg">🔥</span>
-            <span className="font-semibold text-sm text-text-primary">
-              Streak: {mockData.streak} days
-            </span>
-          </div>
-          <div
-            className="bg-dark-card rounded-[26px] px-5 py-3 border border-dark-border flex items-center gap-2"
-            style={{ boxShadow: "var(--shadow-subtle)" }}
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-2xl">🔥</span>
+              <span className="text-xl font-bold text-text-primary">{mockData.streak}</span>
+              <span className="text-xs text-text-secondary">day streak</span>
+            </div>
+          </Card>
+          <Card
+            className="flex-1 bg-gradient-to-br from-blue-500/20 to-purple-500/20 border-blue-500/30 rounded-[24px] p-4"
+            style={{ boxShadow: "0 0 15px rgba(93, 95, 236, 0.25)" }}
           >
-            <span className="text-lg">🎯</span>
-            <span className="font-semibold text-sm text-text-primary">
-              Goal: {mockData.goal}×/week
-            </span>
-          </div>
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-2xl">🎯</span>
+              <span className="text-xl font-bold text-text-primary">{mockData.goal}×</span>
+              <span className="text-xs text-text-secondary">per week</span>
+            </div>
+          </Card>
         </div>
 
-        {/* Workout Tags */}
+        {/* Workout Tags - Clickable to Filter */}
         <div className="flex flex-wrap justify-center gap-2 mb-5">
           {mockData.topWorkouts.map((workout, index) => {
             const emojiMap: Record<string, string> = {
@@ -87,16 +99,17 @@ const Index = () => {
               "Cycling": "🚴",
             };
             return (
-              <div
+              <button
                 key={index}
-                className="bg-dark-card rounded-[20px] px-4 py-2 border border-dark-border flex items-center gap-2"
-                style={{ boxShadow: "var(--shadow-subtle)" }}
+                onClick={() => handleWorkoutTagClick(workout)}
+                className="bg-dark-card/50 rounded-[16px] px-3 py-1.5 border border-dark-border/50 flex items-center gap-1.5 hover:bg-dark-card hover:border-accent-blue/50 transition-all"
+                style={{ boxShadow: "0 1px 4px rgba(0, 0, 0, 0.2)" }}
               >
-                <span className="text-base">{emojiMap[workout]}</span>
-                <span className="text-sm font-medium text-text-primary">
+                <span className="text-sm">{emojiMap[workout]}</span>
+                <span className="text-xs font-medium text-text-secondary">
                   {workout}
                 </span>
-              </div>
+              </button>
             );
           })}
         </div>
@@ -143,15 +156,16 @@ const Index = () => {
           </Button>
         </div>
 
-        {/* My Workouts Card */}
+        {/* Create Workout Card */}
         <Card 
-          className="mb-7 p-5 bg-dark-card border-dark-border rounded-[26px] cursor-pointer hover:bg-dark-card/80 transition-colors"
+          className="mb-7 p-5 bg-gradient-to-br from-accent-blue/10 to-purple-500/10 border-accent-blue/30 rounded-[26px] cursor-pointer hover:from-accent-blue/20 hover:to-purple-500/20 transition-all"
           style={{ boxShadow: "var(--shadow-glow)" }}
+          onClick={() => toast.info("Create Workout screen coming soon!")}
         >
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-base font-bold text-text-primary mb-1">📝 My Workouts</h3>
-              <p className="text-sm text-text-secondary">Your routines, notes & tracked exercises</p>
+              <h3 className="text-base font-bold text-text-primary mb-1">✏️ Create Workout</h3>
+              <p className="text-sm text-text-secondary">Build custom routines & track exercises</p>
             </div>
             <span className="text-text-primary text-xl">→</span>
           </div>
