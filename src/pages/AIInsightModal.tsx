@@ -16,10 +16,22 @@ const AIInsightModal = () => {
 
   const handleCreateRoutineFromRecommendations = () => {
     toast({ 
-      title: "Creating routine from recommendations...",
-      description: "Opening routine builder with AI suggestions"
+      title: "Creating AI routine...",
+      description: "Pre-filled with recommended exercises for your goals"
     });
-    navigate('/create-routine');
+    
+    // Pass exercises to CreateRoutine page
+    navigate('/create-routine', {
+      state: {
+        aiGenerated: true,
+        routineName: "AI Recommended Routine",
+        exercises: recommendedExercises.map(ex => ({
+          name: ex.name,
+          sets: ex.sets.split('×')[0],
+          reps: ex.sets.split('×')[1] || '12'
+        }))
+      }
+    });
   };
 
   const recommendedExercises = [
