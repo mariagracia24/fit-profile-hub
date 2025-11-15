@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowLeft, Plus, X } from "lucide-react";
@@ -13,10 +13,15 @@ interface Exercise {
 
 const CreateRoutine = () => {
   const navigate = useNavigate();
-  const [routineName, setRoutineName] = useState("");
-  const [exercises, setExercises] = useState<Exercise[]>([
-    { name: "", sets: "", reps: "" }
-  ]);
+  const location = useLocation();
+  const aiData = location.state as { aiGenerated?: boolean; routineName?: string; exercises?: Exercise[] } | null;
+  
+  const [routineName, setRoutineName] = useState(aiData?.routineName || "");
+  const [exercises, setExercises] = useState<Exercise[]>(
+    aiData?.exercises && aiData.exercises.length > 0 
+      ? aiData.exercises 
+      : [{ name: "", sets: "", reps: "" }]
+  );
 
   const addExercise = () => {
     setExercises([...exercises, { name: "", sets: "", reps: "" }]);
