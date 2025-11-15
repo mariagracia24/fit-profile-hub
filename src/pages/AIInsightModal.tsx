@@ -1,10 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Target, TrendingUp, Flame, Dumbbell } from "lucide-react";
+import { Target, TrendingUp, Flame, Dumbbell, Plus } from "lucide-react";
+import { toast } from "@/hooks/use-toast";
 
 const AIInsightModal = () => {
   const navigate = useNavigate();
+
+  const handleAddExercise = (exerciseName: string) => {
+    toast({ 
+      title: `Added ${exerciseName}`,
+      description: "Exercise added to your new routine"
+    });
+  };
+
+  const handleCreateRoutineFromRecommendations = () => {
+    toast({ 
+      title: "Creating routine from recommendations...",
+      description: "Opening routine builder with AI suggestions"
+    });
+    navigate('/create-routine');
+  };
 
   const recommendedExercises = [
     { name: "Push-ups", reason: "Build upper body strength", sets: "3×12", difficulty: "Beginner" },
@@ -85,26 +101,45 @@ const AIInsightModal = () => {
 
             {/* Section 5: Recommended Exercises */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <Dumbbell className="text-[#5D5FEC]" size={20} />
-                <h3 className="text-white font-semibold">Recommended Exercises</h3>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Dumbbell className="text-[#5D5FEC]" size={20} />
+                  <h3 className="text-white font-semibold">Recommended Exercises</h3>
+                </div>
+                <Button
+                  onClick={handleCreateRoutineFromRecommendations}
+                  size="sm"
+                  className="bg-[#5D5FEC]/20 hover:bg-[#5D5FEC]/30 text-[#5D5FEC] border border-[#5D5FEC]/30 rounded-full text-xs h-8"
+                >
+                  <Plus size={14} className="mr-1" />
+                  Create Routine
+                </Button>
               </div>
               <p className="text-[#A8A8A8] text-sm">Based on your goals and current progress</p>
               <div className="space-y-2">
                 {recommendedExercises.map((exercise, idx) => (
                   <div key={idx} className="bg-[#1A1A1A] p-4 rounded-xl space-y-1">
-                    <div className="flex items-start justify-between">
+                    <div className="flex items-start justify-between gap-3">
                       <div className="flex-1">
                         <p className="text-white font-medium">{exercise.name}</p>
                         <p className="text-[#A8A8A8] text-xs mt-1">{exercise.reason}</p>
                       </div>
-                      <span className={`px-2 py-1 rounded-full text-xs ${
-                        exercise.difficulty === 'Beginner' 
-                          ? 'bg-[#10B981]/20 text-[#10B981]' 
-                          : 'bg-[#F59E0B]/20 text-[#F59E0B]'
-                      }`}>
-                        {exercise.difficulty}
-                      </span>
+                      <div className="flex items-center gap-2">
+                        <span className={`px-2 py-1 rounded-full text-xs whitespace-nowrap ${
+                          exercise.difficulty === 'Beginner' 
+                            ? 'bg-[#10B981]/20 text-[#10B981]' 
+                            : 'bg-[#F59E0B]/20 text-[#F59E0B]'
+                        }`}>
+                          {exercise.difficulty}
+                        </span>
+                        <button
+                          onClick={() => handleAddExercise(exercise.name)}
+                          className="w-7 h-7 rounded-full bg-[#5D5FEC]/20 hover:bg-[#5D5FEC]/30 border border-[#5D5FEC]/30 flex items-center justify-center transition-colors"
+                          aria-label="Add exercise"
+                        >
+                          <Plus size={14} className="text-[#5D5FEC]" />
+                        </button>
+                      </div>
                     </div>
                     <div className="flex items-center gap-2 mt-2">
                       <Flame size={14} className="text-[#5D5FEC]" />
