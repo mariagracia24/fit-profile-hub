@@ -39,14 +39,17 @@ const AIInsightModal = () => {
   return (
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-end justify-center z-50 animate-fade-in">
       <div 
-        className="w-full max-w-2xl bg-[#111111] rounded-t-[28px] border-t-2 border-[#5D5FEC]/30 shadow-[0_0_40px_rgba(93,95,236,0.3)] max-h-[90vh] flex flex-col"
+        className="w-full max-w-2xl bg-[#111111] rounded-t-[28px] border-t-2 border-[#5D5FEC]/30 shadow-[0_0_40px_rgba(93,95,236,0.3)] max-h-[85vh] flex flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <ScrollArea className="flex-1">
-          <div className="p-6 flex flex-col gap-6">
-            <h2 className="text-2xl font-bold text-white text-center">🔮 AI Workout Insight</h2>
+        <div className="p-6 pb-3">
+          <h2 className="text-2xl font-bold text-white text-center">🔮 AI Workout Insight</h2>
+        </div>
+        
+        <div className="flex-1 overflow-y-auto px-6">
+          <div className="flex flex-col gap-6 pb-6">
           
-          {/* Section 1: Most Consistent Category */}
+            {/* Section 1: Most Consistent Category */}
           <div className="bg-[#1A1A1A] p-4 rounded-2xl border border-[#5D5FEC]/20 shadow-[0_0_20px_rgba(93,95,236,0.2)]">
             <p className="text-white text-center">
               Your most consistent category this month: <span className="font-bold">Strength 💪</span>
@@ -106,16 +109,23 @@ const AIInsightModal = () => {
                   <Dumbbell className="text-[#5D5FEC]" size={20} />
                   <h3 className="text-white font-semibold">Recommended Exercises</h3>
                 </div>
-                <Button
-                  onClick={handleCreateRoutineFromRecommendations}
-                  size="sm"
-                  className="bg-[#5D5FEC]/20 hover:bg-[#5D5FEC]/30 text-[#5D5FEC] border border-[#5D5FEC]/30 rounded-full text-xs h-8"
-                >
-                  <Plus size={14} className="mr-1" />
-                  Create Routine
-                </Button>
               </div>
               <p className="text-[#A8A8A8] text-sm">Based on your goals and current progress</p>
+              
+              {/* Big AI Create Routine Button */}
+              <div className="bg-gradient-to-r from-[#5D5FEC] to-[#7A82FF] p-4 rounded-2xl space-y-3">
+                <div className="text-center space-y-2">
+                  <p className="text-white font-semibold">✨ Let AI Build Your Routine</p>
+                  <p className="text-white/80 text-sm">Perfect for beginners! AI will create a complete workout plan based on your goals.</p>
+                </div>
+                <Button
+                  onClick={handleCreateRoutineFromRecommendations}
+                  className="w-full bg-white hover:bg-white/90 text-[#5D5FEC] rounded-full h-12 text-base font-semibold shadow-lg"
+                >
+                  🤖 Create My AI Routine
+                </Button>
+              </div>
+
               <div className="space-y-2">
                 {recommendedExercises.map((exercise, idx) => (
                   <div key={idx} className="bg-[#1A1A1A] p-4 rounded-xl space-y-1">
@@ -160,16 +170,18 @@ const AIInsightModal = () => {
                 <p>• You're 1 workout away from beating your weekly goal!</p>
               </div>
             </div>
-
-            {/* Button */}
-            <Button 
-              onClick={() => navigate(-1)}
-              className="w-full bg-[#5D5FEC] hover:bg-[#5D5FEC]/90 text-white rounded-full h-12 text-base font-medium shadow-[0_0_20px_rgba(93,95,236,0.3)]"
-            >
-              Got it
-            </Button>
           </div>
-        </ScrollArea>
+        </div>
+
+        {/* Fixed Bottom Button */}
+        <div className="p-6 pt-3 border-t border-[#1E1E1E] bg-[#111111]">
+          <Button 
+            onClick={() => navigate(-1)}
+            className="w-full bg-[#1A1A1A] hover:bg-[#1E1E1E] text-white border border-[#1E1E1E] rounded-full h-12 text-base font-medium"
+          >
+            Close
+          </Button>
+        </div>
       </div>
     </div>
   );
