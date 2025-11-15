@@ -8,6 +8,7 @@ import gallery6 from "@/assets/gallery-6.jpg";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 const mockData = {
   name: "Maria Gracia M",
@@ -25,6 +26,8 @@ const mockData = {
 };
 
 const Index = () => {
+  const navigate = useNavigate();
+  
   const handleWorkoutTagClick = (workout: string) => {
     toast({
       title: "Filtering Workouts",
@@ -47,10 +50,7 @@ const Index = () => {
   };
 
   const handleLibraryClick = () => {
-    toast({
-      title: "My Workout Library",
-      description: "Coming soon!",
-    });
+    navigate("/library");
   };
 
   return (
