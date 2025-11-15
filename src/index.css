@@ -8,46 +8,51 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 7%;
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 7%;
+    --card: 0 0% 6.7%;
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 7%;
+    --popover: 0 0% 6.7%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 0 0% 7%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
 
-    --secondary: 240 13% 97%;
-    --secondary-foreground: 0 0% 13%;
+    --secondary: 0 0% 6.7%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 33%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 0 0% 11.8%;
+    --muted-foreground: 0 0% 65.9%;
 
-    --accent: 240 13% 97%;
-    --accent-foreground: 0 0% 13%;
+    --accent: 0 0% 6.7%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 9% 92%;
-    --input: 240 9% 92%;
-    --ring: 0 0% 7%;
+    --border: 0 0% 11.8%;
+    --input: 0 0% 11.8%;
+    --ring: 0 0% 80%;
 
-    --radius: 1.25rem;
+    --radius: 1.5rem;
     
-    /* SpotMe Design System */
-    --soft-grey: 240 13% 97%;
-    --border-light: 240 9% 92%;
-    --text-primary: 0 0% 7%;
-    --text-secondary: 0 0% 13%;
-    --text-muted: 0 0% 55%;
+    /* SpotMe Dark Design System */
+    --dark-card: 0 0% 6.7%;
+    --dark-border: 0 0% 11.8%;
+    --text-primary: 0 0% 100%;
+    --text-secondary: 0 0% 65.9%;
+    --text-muted: 0 0% 50%;
+    
+    /* Electric Accent */
+    --accent-blue: 244 67% 64%;
+    --accent-glow: 244 100% 75%;
     
     /* Shadows */
-    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.07);
-    --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-dark: 0 4px 12px rgba(0, 0, 0, 0.35);
+    --shadow-subtle: 0 2px 6px rgba(0, 0, 0, 0.25);
+    --shadow-glow: 0 0 20px rgba(122, 130, 255, 0.25);
     
     /* Spacing */
     --spacing-xs: 0.75rem;
@@ -56,57 +61,14 @@ All colors MUST be HSL.
     --spacing-lg: 1.5rem;
     --spacing-xl: 1.75rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 100%;
-
-    --card: 0 0% 13%;
-    --card-foreground: 0 0% 100%;
-
-    --popover: 0 0% 13%;
-    --popover-foreground: 0 0% 100%;
-
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 7%;
-
-    --secondary: 240 5% 15%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 240 5% 20%;
-    --muted-foreground: 0 0% 65%;
-
-    --accent: 240 5% 15%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 240 5% 20%;
-    --input: 240 5% 20%;
-    --ring: 0 0% 80%;
-    
-    --soft-grey: 240 5% 15%;
-    --border-light: 240 5% 20%;
-    --text-primary: 0 0% 100%;
-    --text-secondary: 0 0% 90%;
-    --text-muted: 0 0% 65%;
+    --sidebar-background: 0 0% 6.7%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 0 0% 6.7%;
+    --sidebar-accent: 0 0% 11.8%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 11.8%;
+    --sidebar-ring: 244 67% 64%;
   }
 }
 

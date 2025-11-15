@@ -47,11 +47,13 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        "soft-grey": "hsl(var(--soft-grey))",
-        "border-light": "hsl(var(--border-light))",
+        "dark-card": "hsl(var(--dark-card))",
+        "dark-border": "hsl(var(--dark-border))",
         "text-primary": "hsl(var(--text-primary))",
         "text-secondary": "hsl(var(--text-secondary))",
         "text-muted": "hsl(var(--text-muted))",
+        "accent-blue": "hsl(var(--accent-blue))",
+        "accent-glow": "hsl(var(--accent-glow))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -85,10 +87,19 @@ export default {
             height: "0",
           },
         },
+        "pulse-glow": {
+          "0%, 100%": {
+            boxShadow: "0 0 15px rgba(122, 130, 255, 0.25)",
+          },
+          "50%": {
+            boxShadow: "0 0 25px rgba(122, 130, 255, 0.45)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "pulse-glow": "pulse-glow 2s ease-in-out infinite",
       },
     },
   },
